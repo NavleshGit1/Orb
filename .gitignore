@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Test artifacts & debug profiles
+.chrome-test/
+screenshot_*.png
+
+# Backups & temporary files
+backups/
+*.bak
+*.bak*
+*~
+
+# OS metadata & caches
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & editor directories
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

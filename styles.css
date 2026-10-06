@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+
+html {
+    height: 100%;
+    width: 100%;
+    background-color: #1d292c;
+}
+body {
+    margin: 0;
+    max-height: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #1d292c;
+    font-family: Helvetica, arial, sans-serif;
+    position: relative;
+    width: 100%;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+#application-canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+#application-canvas.fill-mode-NONE {
+    margin: auto;
+}
+#application-canvas.fill-mode-KEEP_ASPECT {
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+#application-canvas.fill-mode-FILL_WINDOW {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+canvas:focus {
+    outline: none;
+}
+
+/* ==========================================================================
+   Ending Credits: Registration Section & Scroll-Triggered Black Footer
+   ========================================================================== */
+
+/* Initially centered vertically when arriving at the registration page */
+#ec-final {
+    position: absolute;
+    left: 50%;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+    transition: top 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    z-index: 4;
+}
+
+/* Moves gracefully upward when the footer is revealed by scrolling */
+#ec-final.with-footer {
+    top: clamp(20%, 25vh, 28%) !important;
+}
+
+/* The footer is rich obsidian/carbon black with distinct top highlight, shadow, and border */
+#ending-credits #ec-footer,
+.diot-footer {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 10 !important;
+    background: linear-gradient(180deg, #111116 0%, #070709 100%) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    padding: clamp(48px, 6vh, 68px) clamp(32px, 5.5vw, 84px) clamp(40px, 5vh, 56px) !important;
+    box-sizing: border-box !important;
+    color: #94a3b8 !important;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+
+    /* Hidden off-screen initially until the user scrolls down on registration page */
+    transform: translateY(105%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease !important;
+}
+
+/* Revealed after scrolling on the registration page */
+#ending-credits #ec-footer.diot-footer-visible,
+.diot-footer.diot-footer-visible {
+    transform: translateY(0%) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+#ending-credits #ec-footer *,
+.diot-footer * {
+    box-sizing: border-box;
+}
+
+#ending-credits #ec-footer .diot-footer-inner,
+.diot-footer-inner {
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: 1.5fr 1fr 1.3fr 1fr !important;
+    gap: clamp(24px, 4vw, 56px) !important;
+    align-items: start !important;
+}
+
+#ending-credits #ec-footer .diot-col-brand,
+.diot-col-brand {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+}
+
+#ending-credits #ec-footer .diot-brand-header,
+.diot-brand-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+}
+
+#ending-credits #ec-footer .diot-brand-logo,
+.diot-brand-logo {
+    width: 48px !important;
+    height: 48px !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 2px 10px rgba(0, 210, 255, 0.35)) !important;
+}
+
+#ending-credits #ec-footer .diot-brand-name,
+.diot-brand-name {
+    font-size: clamp(18px, 1.8vw, 22px) !important;
+    font-weight: 700 !important;
+    color: #00d2ff !important;
+    letter-spacing: 0.02em !important;
+    white-space: nowrap !important;
+    font-family: 'Orbitron', sans-serif !important;
+    text-shadow: 0 0 16px rgba(0, 210, 255, 0.35) !important;
+}
+
+#ending-credits #ec-footer .diot-brand-desc,
+.diot-brand-desc {
+    font-size: 13.5px !important;
+    line-height: 1.65 !important;
+    color: #8fa0b5 !important;
+    margin: 0 !important;
+    max-width: 360px !important;
+}
+
+#ending-credits #ec-footer .diot-col-title,
+.diot-col-title {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    letter-spacing: 0.03em !important;
+    font-family: 'Orbitron', sans-serif !important;
+    margin: 0 0 20px 0 !important;
+}
+
+#ending-credits #ec-footer .diot-nav-list,
+.diot-nav-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+#ending-credits #ec-footer .diot-nav-link,
+.diot-nav-link {
+    color: #8fa0b5 !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    transition: color 0.2s ease, transform 0.2s ease !important;
+    display: inline-block !important;
+    cursor: pointer !important;
+}
+
+#ending-credits #ec-footer .diot-nav-link:hover,
+.diot-nav-link:hover {
+    color: #00d2ff !important;
+    transform: translateX(3px) !important;
+}
+
+#ending-credits #ec-footer .diot-contact-link,
+.diot-contact-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    color: #8fa0b5 !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    transition: color 0.2s ease !important;
+    word-break: break-all !important;
+    cursor: pointer !important;
+}
+
+#ending-credits #ec-footer .diot-contact-link:hover,
+.diot-contact-link:hover {
+    color: #00d2ff !important;
+}
+
+#ending-credits #ec-footer .diot-contact-icon,
+.diot-contact-icon {
+    flex-shrink: 0 !important;
+    stroke: #00d2ff !important;
+    width: 19px !important;
+    height: 19px !important;
+    filter: drop-shadow(0 0 6px rgba(0, 210, 255, 0.4)) !important;
+}
+
+#ending-credits #ec-footer .diot-social-row,
+.diot-social-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    margin-bottom: 22px !important;
+}
+
+#ending-credits #ec-footer .diot-social-icon,
+.diot-social-icon {
+    color: #8fa0b5 !important;
+    transition: color 0.2s ease, transform 0.2s ease, filter 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+#ending-credits #ec-footer .diot-social-icon svg,
+.diot-social-icon svg {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+#ending-credits #ec-footer .diot-social-icon:hover,
+.diot-social-icon:hover {
+    color: #00d2ff !important;
+    transform: translateY(-2px) !important;
+    filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.5)) !important;
+}
+
+#ending-credits #ec-footer .diot-back-top-btn,
+.diot-back-top-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: #141418 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    padding: 9px 18px !important;
+    border-radius: 6px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    font-family: inherit !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+    pointer-events: auto !important;
+}
+
+#ending-credits #ec-footer .diot-back-top-btn:hover,
+.diot-back-top-btn:hover {
+    background: rgba(0, 210, 255, 0.12) !important;
+    border-color: #00d2ff !important;
+    color: #00d2ff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 210, 255, 0.25) !important;
+}
+
+@media (max-width: 960px) {
+    #ending-credits #ec-footer,
+    .diot-footer {
+        padding: 36px 28px 32px !important;
+    }
+    #ending-credits #ec-footer .diot-footer-inner,
+    .diot-footer-inner {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 28px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    #ending-credits #ec-footer,
+    .diot-footer {
+        padding: 24px 20px 28px !important;
+    }
+    #ending-credits #ec-footer .diot-footer-inner,
+    .diot-footer-inner {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    #ec-final.with-footer {
+        top: 18% !important;
+    }
+}
