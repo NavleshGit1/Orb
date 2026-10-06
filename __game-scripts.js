@@ -77,38 +77,36 @@ SceneCar.prototype.update = function (e) {
         this._shuttleTime = (this._shuttleTime || 0) + dt;
         var t = this._shuttleTime;
 
-        // Smooth mouse follow (smooth responsive tracking of cursor)
-        var lerpFactor = 1 - Math.pow(0.04, dt);
+        // Interactive mouse follow with smooth lerp damping
+        var lerpFactor = 1 - Math.pow(0.05, dt);
         this._smoothMouseX += ((this._targetMouseX || 0) - (this._smoothMouseX || 0)) * lerpFactor;
         this._smoothMouseY += ((this._targetMouseY || 0) - (this._smoothMouseY || 0)) * lerpFactor;
 
-        // 1. Organic multi-frequency Zero-G floating & spatial drift
-        var bobY = Math.sin(t * 1.15) * 0.42 + Math.sin(t * 2.3 + 1.2) * 0.12;
-        var driftX = Math.cos(t * 0.75) * 0.32 + Math.sin(t * 1.6 + 0.4) * 0.08;
-        var surgeZ = Math.sin(t * 0.55 + 2.0) * 0.22;
+        // Gentle ambient zero-g floating
+        var bobY = Math.sin(t * 1.0) * 0.25;
+        var driftX = Math.cos(t * 0.7) * 0.15;
+        var surgeZ = Math.sin(t * 0.5) * 0.10;
 
-        // 2. Interactive mouse parallax & steering tilt (spacecraft banking towards cursor)
-        var mousePosX = (this._smoothMouseX || 0) * 0.45;
-        var mousePosY = -(this._smoothMouseY || 0) * 0.35;
-        var mousePitch = -(this._smoothMouseY || 0) * 4.2;
-        var mouseRoll = (this._smoothMouseX || 0) * 5.5;
-        var mouseYaw = (this._smoothMouseX || 0) * 3.8;
+        // Interactive mouse steering & parallax (Feature 3)
+        // Restrained, subtle banking as requested
+        var mousePosX = (this._smoothMouseX || 0) * 0.35;
+        var mousePosY = -(this._smoothMouseY || 0) * 0.25;
+        var mousePitch = -(this._smoothMouseY || 0) * 2.4;  // Subtle nose pitch towards cursor
+        var mouseRoll = (this._smoothMouseX || 0) * 1.6;    // Subtle, gentle banking (toned down)
+        var mouseYaw = (this._smoothMouseX || 0) * 2.2;     // Subtle turn towards cursor
 
-        // 3. Fluid 3D attitude dynamics (Pitch, Roll, Yaw harmonic oscillations)
-        var pitch = Math.sin(t * 0.95 + 0.5) * 3.0 + Math.cos(t * 1.9) * 0.8;
-        var roll = Math.sin(t * 0.78) * 3.8 + Math.cos(t * 1.45 + 1.0) * 1.0;
-        var yaw = Math.sin(t * 0.48) * 2.0;
+        // Ambient micro-rotations
+        var pitch = Math.sin(t * 0.8) * 1.2;
+        var roll = Math.sin(t * 0.6) * 0.8; // Very gentle ambient roll
+        var yaw = Math.sin(t * 0.4) * 0.8;
 
-        // 4. Subtle active RCS thruster / engine stabilization hum
-        var jitterY = Math.sin(t * 32.0) * 0.008;
-
-        // Apply position
+        // Apply updated position
         var posX = -0.035 + driftX + mousePosX;
-        var posY = -17.77 + bobY + mousePosY + jitterY;
+        var posY = -17.77 + bobY + mousePosY;
         var posZ = 12.18 + surgeZ;
         this._shuttle.setLocalPosition(posX, posY, posZ);
 
-        // Apply Euler orientation (base [180, 0, 180])
+        // Apply updated Euler orientation (base [180, 0, 180])
         var rotPitch = 180 + pitch + mousePitch;
         var rotYaw = 0 + yaw + mouseYaw;
         var rotRoll = 180 + roll + mouseRoll;
